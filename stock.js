@@ -50,26 +50,31 @@ function stockcheck(event){
   const itemlist=document.querySelector("ul");
   itemlist.appendChild(useritem)
 
-  buyone.addEventListener("click",function(event){
-    
-    console.log(num)
-    axios.put(`https://crudcrud.com/api/1205395d85794633a383a67bfacd4672/stockupdate/${stockupdate._id}`,{
-        quantity:  num,
+  function handlebuyclick(stockupdateId,currentvalue,decvalue){
+    updateValue=currentvalue-decvalue;
+    axios.put(`https://crudcrud.com/api/1205395d85794633a383a67bfacd4672/stockupdate/${stockupdateId}`, {
+        nameitem: stockupdate.nameitem, 
+        description: stockupdate.description,
+        quantity: updateValue,
+
+     })
+      .then((res)=>{
+        console.log(res)
+      })
+      .catch((err)=>{
+        console.log(err)
+      })
+  }
+
+  buyone.addEventListener("click", ()=>{
+    handlebuyclick(stockupdate._id,stockupdate.quantity,1)
     })
       
+  
+  buytwo.addEventListener("click",()=>{
+     handlebuyclick(stockupdate._id,stockupdate.quantity,2)
   })
-  buytwo.addEventListener("click",function(event){
-    axios.put(`https://crudcrud.com/api/1205395d85794633a383a67bfacd4672/stockupdate/${stockupdate._id}`,
-        {
-            quantity: num-2,
-        }
-    )
-  })
-  buythree.addEventListener("click",function(event){
-    axios.put(`https://crudcrud.com/api/1205395d85794633a383a67bfacd4672/stockupdate/${stockupdate._id}`,
-        {
-            quantity: num-3,
-        }
-    )
+  buythree.addEventListener("click",()=>{
+    handlebuyclick(stockupdate._id,stockupdate.quantity,3)
   })
  }
