@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>stockupdate</title>
+</head>
+<body>
+    <form onsubmit="stockcheck(event)">
+        <label for="nameitem">Name Of Item</label>
+        <input type="text" name="nameitem" id="nameitem" />
+        <label for="description">Description</label>
+        <input type="text" name="description" id="description" />
+        <label for="quantity">Quantity</label>
+        <input type="number" name="quantity" id="quantity" />
+        <button type="submit">Add Item</button>
+      </form>
+      <ul></ul> 
+</body>
+<script src="stock.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.7/axios.min.js"></script>
+
+</html>
